@@ -3,6 +3,11 @@ function math.round(x, n)
     return math.floor(x * f + 0.5) / f
 end
 
+function math.sign(x)
+   if x == 0 then return 0 end
+   return 1 and x > 0 or -1
+end
+
 function math.vecFloor(v)
     return vecFunc(v, math.floor)
 end
@@ -13,6 +18,16 @@ end
 
 function math.vecRound(v, n)
     return vecFunc(v, math.round, n)
+end
+
+function math.circularMean(...)
+   local args = {...}
+   local sumSin, sumCos = 0, 0
+   for _, angle in ipairs(args) do
+      sumSin = sumSin + math.sin(angle)
+      sumCos = sumCos + math.cos(angle) 
+   end
+   return math.atan(sumSin, sumCos)
 end
 
 function math.sum(...)
